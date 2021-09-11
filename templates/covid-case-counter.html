@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+        .body {
+            background-image: linear-gradient(to right, rgb(236, 232, 232), rgb(202, 247, 255));
+        }
+        .countryInp {
+            height: 25px;
+            width: 40%;
+        }
+    </style>
+    <title>Covid 19 Cases Tracker</title>
+</head>
+<body class="body">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Smart Health</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/covid-predictor">Scan Lung Image</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/covid-case-checker">Check Covid Cases</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/vaccine-news-page">Check Vaccine News</a>
+            </li>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/ai-covid-assistant">AI Covid Assitant</a>
+            </li>
+          </ul>
+            <form class="d-flex">
+            <img src="{{url_for('static', filename='SMART HEALTH.png')}}" class="logo"/>
+      </form>
+        </div>
+      </div>
+    </nav>
+<center>
+        <h1>Covid 19 Cases Tracker</h1>
+        <br /><br /><br />
+        <form method="POST">
+            <input name="countryInp" class="countryInp" placeholder="Enter Country Name"/>
+        </form>
+        <br /><br /><br /><br />
+        <p>
+            <h3>The new cases are:
+        {{new_cases}}</h3><br />
+            <h3>The new deaths are:
+                {{new_deaths}}</h3><br />
+            <h3>The total cases are:
+                {{total_cases}}</h3><br />
+            <h3>The total deaths are:
+                {{total_deaths}}</h3>
+        </p>
+    </center>
+</body>
+</html>

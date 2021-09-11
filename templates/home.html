@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .body {
+            background-image: linear-gradient(to right, rgb(236, 232, 232), rgb(202, 247, 255));
+        }
+        .logo {
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+
+    <title>Smart Health</title>
+</head>
+
+<body class="body">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Smart Health</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/covid-predictor">Scan Lung Image</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/covid-case-checker">Check Covid Cases</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/vaccine-news-page">Check Vaccine News</a>
+            </li>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/ai-covid-assistant">AI Covid Assitant</a>
+            </li>
+          </ul>
+            <form class="d-flex">
+            <img src="{{url_for('static', filename='SMART HEALTH.png')}}" class="logo"/>
+      </form>
+        </div>
+      </div>
+    </nav>   <center>
+        <h1>Smart Health</h1>
+
+        <h3>Quick Medical Scans and More</h3>
+        <hr>
+        <br /><br />
+        <section>
+            <h3>What is Smart Health?</h3>
+                <hr />
+            <h5>Smart Health is a facility that allows people to get information about the ongoing COVID pandemic. It also allows them to do Medical Scans on images of lungs to diagnose COVID-19 for free.
+                We use a 96% accurate Neural Network to predict on the lung images which is more accurate than
+                standard RTPCR reports. On extensive testing it was found out that the model got 3 predictions incorrect
+                from a total of 150 images. It also has an AI Chatbot that informs you about various facts about COVID. And has all the current news about
+                vaccines that you can also download so you can access it offline
+            </h5>
+        </section>
+    </center>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+[
+    {
+        "sentence": "What is COVID?",
+        "tag": 0
+    },
+    {
+        "sentence": "What's COVID",
+        "tag": 0
+    },
+    {
+        "sentence": "What is COVID-19",
+        "tag": 0
+    },
+    {
+        "sentence": "What is SARS COVID-19",
+        "tag": 0
+    },
+    {
+        "sentence": "What is coronavirus",
+        "tag": 0
+    },
+    {
+        "sentence": "What is Coronavirus",
+        "tag": 0
+    },
+    {
+        "sentence": "What is CORONAVIRUS",
+        "tag": 0
+    },
+    {
+        "sentence": "What is CORONAVIRUS",
+        "tag": 0
+    },
+    {
+        "sentence": "How many variants does COVID have",
+        "tag": 1
+    },
+    {
+        "sentence": "How many variants does COVID have",
+        "tag": 1
+    },
+    {
+        "sentence": "How many variants does Coronavirus have?",
+        "tag": 1
+    },
+    {
+        "sentence": "What are the variants of covid",
+        "tag": 1
+    },
+    {
+        "sentence": "What are Covid symptoms",
+        "tag": 2
+    },
+    {
+        "sentence": "What are CORONAVIRUS symptoms",
+        "tag": 2
+    },
+    {
+        "sentence": "What does a person feel when he catches the coronavirus",
+        "tag": 2
+    },
+    {
+        "sentence": "Which indications should a person look out for to check COVID",
+        "tag": 2
+    },
+    {
+        "sentence": "Which indications should a person look out for to check coronavirus",
+        "tag": 2
+    },
+    {
+        "sentence": "I am feeling a headache what should I do",
+        "tag": 3
+    },
+    {
+        "sentence": "I am feeling nauseated so is it a COVID symptom",
+        "tag": 3
+    },
+    {
+        "sentence": "I am feeling",
+        "tag": 3
+    },
+    {
+        "sentence": "I am feeling palpitations should I go to the hospital",
+        "tag": 3
+    },
+    {
+        "sentence": "What to do if I am having fever and throat pain",
+        "tag": 3
+    },
+    {
+        "sentence": "What to do if I have low oxygen",
+        "tag": 3
+    },
+    {
+        "sentence": "What to do",
+        "tag": 3
+    },
+    {
+        "sentence": "What precautions should a person take to prevent them from catching the corona virus",
+        "tag": 4
+    },
+    {
+        "sentence": "What are the precautions that should be taken by people",
+        "tag": 4
+    },
+    {
+        "sentence": "What are the precautions that should be taken by ppl",
+        "tag": 4
+    },
+    {
+        "sentence": "Should we wear a mask during this pandemic",
+        "tag": 4
+    },
+    {
+        "sentence": "Should we wear a face shield during this pandemic?",
+        "tag": 4
+    }
+]

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+        .drag-area{
+          border: 2px dashed black;
+          height: 500px;
+          width: 700px;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+
+        .prediction-btn {
+            background: rgb(187, 187, 255);
+        }
+
+        .prediction-btn:hover {
+            background: rgb(195, 255, 195);
+        }
+
+        .drag-area.active{
+          border: 2px solid #fff;
+        }
+        .drag-area .icon{
+          font-size: 100px;
+          color: #fff;
+        }
+        .drag-area header{
+          font-size: 30px;
+          font-weight: 500;
+          color: black;
+        }
+        .drag-area span{
+          font-size: 25px;
+          font-weight: 500;
+          color: black;
+          margin: 10px 0 15px 0;
+        }
+        .drag-area button{
+          padding: 10px 25px;
+          font-size: 20px;
+          font-weight: 500;
+          border: none;
+          outline: none;
+          background: black;
+          color: #5256ad;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        .drag-area img{
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 5px;
+        }
+
+        .body {
+            background-image: linear-gradient(to right, rgb(236, 232, 232), rgb(202, 247, 255));
+        }
+    </style>
+    <title>Smart Health</title>
+
+</head>
+<body class="body">
+    <center>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Smart Health</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/covid-predictor">Scan Lung Image</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/covid-case-checker">Check Covid Cases</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/vaccine-news-page">Check Vaccine News</a>
+            </li>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/ai-covid-assistant">AI Covid Assitant</a>
+            </li>
+          </ul>
+            <form class="d-flex">
+            <img src="{{url_for('static', filename='SMART HEALTH.png')}}" class="logo"/>
+      </form>
+        </div>
+      </div>
+    </nav>
+
+        <h1>Smart Health</h1>
+        <div class="drag-area">
+            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <header>Drag & Drop to Upload File</header>
+            <span>OR</span>
+            <button>Browse File</button>
+            <input type="file" hidden>
+        </div>
+        <script>
+    //selecting all required elements
+    const dropArea = document.querySelector(".drag-area"),
+    dragText = dropArea.querySelector("header"),
+    button = dropArea.querySelector("button"),
+    input = dropArea.querySelector("input");
+    let file; //this is a global variable and we'll use it inside multiple functions
+
+    button.onclick = ()=>{
+      input.click(); //if user click on the button then the input also clicked
+    }
+
+    input.addEventListener("change", function(){
+      //getting user select file and [0] this means if user select multiple files then we'll select only the first one
+      file = this.files[0];
+      dropArea.classList.add("active");
+      showFile(); //calling function
+    });
+
+
+    //If user Drag File Over DropArea
+    dropArea.addEventListener("dragover", (event)=>{
+      event.preventDefault(); //preventing from default behaviour
+      dropArea.classList.add("active");
+      dragText.textContent = "Release to Upload File";
+    });
+
+    //If user leave dragged File from DropArea
+    dropArea.addEventListener("dragleave", ()=>{
+      dropArea.classList.remove("active");
+      dragText.textContent = "Drag & Drop to Upload File";
+    });
+
+    //If user drop File on DropArea
+    dropArea.addEventListener("drop", (event)=>{
+      event.preventDefault(); //preventing from default behaviour
+      //getting user select file and [0] this means if user select multiple files then we'll select only the first one
+      file = event.dataTransfer.files[0];
+      showFile(); //calling function
+    });
+
+    function showFile(){
+      let fileType = file.type; //getting selected file type
+      let validExtensions = ["image/jpeg", "image/jpg", "image/png"]; //adding some valid image extensions in array
+      if(validExtensions.includes(fileType)){ //if user selected file is an image file
+        let fileReader = new FileReader(); //creating new FileReader object
+        fileReader.onload = ()=>{
+          let fileURL = fileReader.result; //passing user file source in fileURL variable
+          let imgTag = `<img src="${fileURL}" alt="">`; //creating an img tag and passing user selected file source inside src attribute
+          dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
+        }
+        fileReader.readAsDataURL(file);
+      }else{
+        alert("This is not an Image File!");
+        dropArea.classList.remove("active");
+        dragText.textContent = "Drag & Drop to Upload File";
+      }
+    }
+
+</script>
+    <br /><br /><br />
+        <form method="POST">
+            <button class="prediction-btn">Prediction Button</button>
+        </form>
+        <p>
+            The prediction is: {{prediction}}
+        </p>
+    </center>
+</body>
+</html>
