@@ -4,6 +4,7 @@ import requests
 import json
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from PIL import Image
 from openpyxl import Workbook
 from PIL import ImageGrab
 import PIL
@@ -25,6 +26,8 @@ country_total_cases = ""
 country_total_deaths = ""
 country_new_cases = ""
 country_new_deaths = ""
+country_new_recoveries = ""
+country_total_recoveries = ""
 country_name_in_response = ""
 news_1_title = ""
 news_1_link = ""
@@ -50,13 +53,16 @@ def covid_predictor():
     global model_prediction
 
     if request.method == "POST":
+        raw_cxr = request.files['file']
+        file_name = "website prediction image.png"
+        raw_cxr.save(file_name)
         # Taking the snapshot
-        snapshot = PIL.ImageGrab.grab(bbox=(735, 324, 2145, 1325))
-        save_path = "test" + ".png"
-        snapshot.save(save_path)
+        # snapshot = PIL.ImageGrab.grab(bbox=(735, 324, 2145, 1325))
+        # save_path = "test" + ".png"
+        # snapshot.save(save_path)
 
         # Making the list of class names
-        class_names = ["Covid", "Normal"]
+        class_names = ["😷 Covid 😷", "😃 Normal 😃"]
 
         # Loading the saved model
         model = load_model("covid-model-2/")
@@ -65,7 +71,7 @@ def covid_predictor():
         model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 
-        test_img = "test.png"
+        test_img = file_name
         img = image.load_img(test_img, target_size=(300, 300))
 
         X = image.img_to_array(img)
@@ -80,7 +86,8 @@ def covid_predictor():
 # Making the covid case tracker page
 @app.route("/covid-case-checker", methods=['GET', 'POST'])
 def covid_case_counter():
-    global total_cases, total_deaths, country_total_cases, country_total_deaths, country_new_cases, country_new_deaths, country_name_in_response
+    global total_cases, total_deaths, country_total_cases, country_total_deaths, country_new_cases, country_new_deaths, country_name_in_response, country_new_recoveries, country_total_recoveries
+
     if request.method == "POST":
         webpage = request.form
         country_name = str(webpage['countryInp'])
@@ -103,6 +110,8 @@ def covid_case_counter():
             country_new_deaths = countries_list[i]['NewDeaths']
             country_total_cases = countries_list[i]['TotalConfirmed']
             country_total_deaths = countries_list[i]['TotalDeaths']
+            country_new_recoveries = countries_list[i]['NewRecovered']
+            country_total_recoveries = countries_list[i]['TotalRecovered']
 
             if country_name == country_name_in_res:
                 print(
