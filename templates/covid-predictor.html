@@ -11,10 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
     <style>
-        .logo {
-            height: 50px;
-            width: 50px;
-        }
         .drag-area{
           border: 2px dashed black;
           height: 500px;
@@ -25,7 +21,10 @@
           justify-content: center;
           flex-direction: column;
         }
-
+        .logo {
+            height: 50px;
+            width: 50px;
+        }
         .prediction-btn {
             background: rgb(187, 187, 255);
         }
@@ -45,6 +44,12 @@
           font-size: 30px;
           font-weight: 500;
           color: black;
+        }
+        .uploadImgBtn {
+            background: rgb(187, 187, 255);
+        }
+        .uploadImgBtn:hover {
+            background: rgb(195, 255, 195);
         }
         .drag-area span{
           font-size: 25px;
@@ -68,6 +73,14 @@
           width: 100%;
           object-fit: cover;
           border-radius: 5px;
+        }
+
+        .imgUpload {
+            border: 2px solid black;
+            width: 50%;
+            height: 40px;
+            text-align: center;
+            border-radius: 5px;
         }
 
         .body {
@@ -108,14 +121,7 @@
       </div>
     </nav>
 
-        <h1>Smart Health</h1>
-        <div class="drag-area">
-            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <header>Drag & Drop to Upload File</header>
-            <span>OR</span>
-            <button>Browse File</button>
-            <input type="file" hidden>
-        </div>
+        <h1>Lung Image Scan</h1>
         <script>
     //selecting all required elements
     const dropArea = document.querySelector(".drag-area"),
@@ -176,13 +182,19 @@
     }
 
 </script>
+        <h3>Simply select an image by clicking the button down below and click on Upload Image the neural network in the background will automatically predict on that image.</h3>
+        <br /><br /><br /><br /><br /><br />
+        <div class="imgUpload">
+            <form action="/covid-predictor" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="file" id="file">
+  <input type="submit" value="Upload Image" name="submit" class="uploadImgBtn">
+</form>
+        </div>
     <br /><br /><br />
-        <form method="POST">
-            <button class="prediction-btn">Prediction Button</button>
-        </form>
-        <p>
+        <h2>
             The prediction is: {{prediction}}
-        </p>
+        </h2>
     </center>
 </body>
 </html>
